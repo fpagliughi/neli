@@ -90,7 +90,8 @@ impl_trait!(
     Rta,
     Tca,
     Nda,
-    IflaInfo
+    IflaInfo,
+    IflaCan
 );
 
 /// Enum usable with [`Rtattr`][crate::rtnl::Rtattr] field,
@@ -306,6 +307,31 @@ pub enum Nda {
     LinkNetnsid = libc::NDA_LINK_NETNSID,
     #[cfg(target_env = "gnu")]
     SrcVni = libc::NDA_SRC_VNI,
+}
+
+/// Enum usable with [`Rtattr`][crate::rtnl::Rtattr] field,
+/// `rta_type`.
+/// Values specify SocketCAN interface parameters
+#[neli_enum(serialized_type = "libc::c_ushort")]
+pub enum IflaCan {
+    Unspec = 0,
+    BitTiming = 1,
+    BitTimingConst = 2,
+    Clock = 3,
+    State = 4,
+    CtrlMode = 5,
+    RestartMs = 6,
+    Restart = 7,
+    BerrCounter = 8,
+    DataBitTiming = 9,
+    DataBitTimingConst = 10,
+    Termination = 11,
+    TerminationConst = 12,
+    BitRateConst = 13,
+    DataBitRateConst = 14,
+    BitRateMax = 15,
+    Tdc = 16,
+    CtrlModeExt = 17,
 }
 
 /// Interface types
